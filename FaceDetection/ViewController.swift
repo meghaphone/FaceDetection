@@ -26,42 +26,22 @@ class ViewController: UIViewController {
     }
     
     func detectFaces(image: UIImage) {
-        // 1. Ask
-        // - Create a request (VNDetectFaceRectanglesRequest)
-        let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceDetectionResults)
+        /* 1. Ask
+         - Create a request (VNDetectFaceRectanglesRequest) */
         
-        // 2. Machinery
-        // - Create a handler (VNImageRequestHandler) that passes in the image
-        // - Call perform on VNImageRequestHandler with VNDetectFaceRectanglesRequest
-        // - Dispatch to queue that is appropriate to problem
-        DispatchQueue.global(qos: .userInitiated).async {
-            // convert to image format that Vision understands: CIImage or CGImage
-            guard let ciImage = CIImage(image: image) else {
-                fatalError("Unable to convert \(image) to CIImage.")
-            }
-            
-            let faceDetectionHandler = VNImageRequestHandler(ciImage: ciImage)
-            do {
-                try faceDetectionHandler.perform([faceDetectionRequest])
-            } catch {
-                print("Failed to perform classification.\n\(error.localizedDescription)")
-            }
-        }
+        
+        /* 2. Machinery
+         - Create a handler (VNImageRequestHandler) that passes in the image
+         - Call perform on VNImageRequestHandler with VNDetectFaceRectanglesRequest
+         - Dispatch to queue that is appropriate to problem */
+        
     }
     
-    // 3. Results
-    // - With each VNFaceObservation, add a face box view with the observation's bounding box
-    // - Make sure to dispatch on the main queue
+    /* 3. Results
+    - With each VNFaceObservation, add a face box view with the observation's bounding box
+    - Make sure to dispatch on the main queue */
     private func handleFaceDetectionResults(request: VNRequest, error: Error?) {
-        DispatchQueue.main.async {
-            guard let observations = request.results as? [VNFaceObservation] else {
-                return
-            }
-            
-            for observation in observations {
-                self.addFaceBoxView(faceBoundingBox: observation.boundingBox)
-            }
-        }
+        
     }
     
     private func addFaceBoxView(faceBoundingBox: CGRect) {
