@@ -10,5 +10,7 @@ Starting in the `ViewController`'s `detectFaces` function, fill in the necessary
 2. Machinery - perform Vision task
 3. Results - do something with Vision's results
 
+## Attributions
+
 The "Ask - Machinery - Results" workflow as explained in the WWDC 2017 "Vision Framework: Building on Core ML" talk.
 https://developer.apple.com/videos/play/wwdc2017/506/
