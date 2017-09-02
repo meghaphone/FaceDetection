@@ -1,6 +1,4 @@
 # FaceDetection
-Sample app showing how to use Vision for Face Detection
-
 Boilerplate code is provided to help with getting the image from the camera roll to prepare for using Vision for face detection. 
 
 # Instructions
